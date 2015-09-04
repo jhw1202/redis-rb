@@ -1,6 +1,7 @@
 require "redis/errors"
 require "socket"
 require "cgi"
+require 'addressable/uri'
 
 class Redis
   class Client
@@ -387,7 +388,7 @@ class Redis
       if url
         require "uri"
 
-        uri = URI(url)
+        uri = Addressable::URI.parse(url)
 
         if uri.scheme == "unix"
           defaults[:path]   = uri.path
